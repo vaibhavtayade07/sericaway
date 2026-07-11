@@ -1,4 +1,5 @@
 import Hero from '@/components/Hero'
+import TechMetrics from '@/components/TechMetrics'
 import Services from '@/components/Services'
 import CaseStudies from '@/components/CaseStudies'
 import WhyChooseUs from '@/components/WhyChooseUs'
@@ -12,6 +13,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <TechMetrics />
       <Services />
       <CaseStudies />
       <WhyChooseUs />
