@@ -22,8 +22,7 @@ module.exports = {
         border: '#27272A',
       },
       fontFamily: {
-        sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-geist-mono)', 'monospace'],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
         '8xl': '88rem',

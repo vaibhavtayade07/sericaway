@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import TechParticles from './TechParticles'
+import OriginKitGrid from './OriginkitGrid'
 import ShinyButton from './ShinyButton'
 
 const containerVariants = {
@@ -25,8 +25,8 @@ const scrollTo = (id) => {
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-[#090909]">
-      <div className="absolute inset-0 pointer-events-none z-0 opacity-60">
-        <TechParticles />
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <OriginKitGrid />
       </div>
 
       <div className="absolute top-1/4 -right-48 w-96 h-96 rounded-full bg-accent/5 blur-[120px] pointer-events-none" />
