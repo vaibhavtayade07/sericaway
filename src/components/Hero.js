@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import AmbientOrbs from './AmbientOrbs'
 import ShinyButton from './ShinyButton'
+import Magnetic from './Magnetic'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -20,6 +21,38 @@ const itemVariants = {
 const scrollTo = (id) => {
   const el = document.querySelector(id)
   if (el) el.scrollIntoView({ behavior: 'smooth' })
+}
+
+const renderAnimatedText = (text, startDelay) => {
+  const words = text.split(' ')
+  let charIndex = 0
+  return words.map((word, wi) => {
+    const chars = word.split('').map((char) => {
+      const idx = charIndex++
+      return (
+        <motion.span
+          key={`c-${idx}`}
+          initial={{ opacity: 0, y: 20, rotateX: -90 }}
+          animate={{ opacity: 1, y: 0, rotateX: 0 }}
+          transition={{
+            duration: 0.5,
+            delay: startDelay + idx * 0.025,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          style={{ display: 'inline-block' }}
+        >
+          {char}
+        </motion.span>
+      )
+    })
+    const isLast = wi === words.length - 1
+    return (
+      <span key={`w-${wi}`} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+        {chars}
+        {!isLast && '\u00A0'}
+      </span>
+    )
+  })
 }
 
 export default function Hero() {
@@ -46,28 +79,33 @@ export default function Hero() {
             </span>
           </div>
 
-          <h1 className="heading-xl text-white text-balance">
-            Intelligent AI Systems.
+          <h1 className="heading-xl text-white tracking-wide">
+            {renderAnimatedText('Intelligent AI Systems.', 0.5)}
             <br />
-            <span className="text-[#A1A1AA]">Built for Business Growth.</span>
+            <span className="text-[#A1A1AA]">
+              {renderAnimatedText('Built for Business Growth.', 1.2)}
+            </span>
           </h1>
 
-          <p className="mt-6 text-lg sm:text-xl text-[#A1A1AA] max-w-2xl leading-relaxed">
+          <motion.p
+            variants={itemVariants}
+            className="mt-6 text-lg sm:text-xl text-[#A1A1AA] max-w-2xl leading-relaxed"
+          >
             We build AI agents and automation systems that remove repetitive
             work, improve operations, and help businesses scale with confidence.
-          </p>
+          </motion.p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          <motion.div variants={itemVariants} className="mt-10 flex flex-wrap gap-4">
             <ShinyButton onClick={() => scrollTo('#contact')}>
               Book a Discovery Call
             </ShinyButton>
-            <button
+            <Magnetic as="button"
               onClick={() => scrollTo('#case-studies')}
               className="px-8 py-3.5 rounded-lg border border-[#27272A] text-[#A1A1AA] font-medium text-sm hover:border-[#A1A1AA] hover:text-white transition-all duration-300"
             >
               View Our Work
-            </button>
-          </div>
+            </Magnetic>
+          </motion.div>
         </motion.div>
 
         <motion.div variants={itemVariants} className="mt-16 flex items-center gap-8 text-xs text-[#52525B]">

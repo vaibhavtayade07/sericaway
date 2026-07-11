@@ -1,11 +1,10 @@
 'use client'
 
+import Magnetic from './Magnetic'
+
 export default function ShinyButton({ children, className = '', ...props }) {
   return (
-    <button
-      className={`relative px-8 py-3.5 rounded-lg bg-accent text-white font-medium text-sm overflow-hidden transition-all duration-300 hover:bg-accent-600 glow ${className}`}
-      {...props}
-    >
+    <Magnetic as="button" className={`relative px-8 py-3.5 rounded-lg bg-accent text-white font-medium text-sm overflow-hidden transition-all duration-300 hover:bg-accent-600 glow ${className}`} {...props}>
       <style dangerouslySetInnerHTML={{
         __html: `@keyframes shinySweep {
           0% { mask-position: 200%; -webkit-mask-position: 200%; }
@@ -26,6 +25,6 @@ export default function ShinyButton({ children, className = '', ...props }) {
       >
         {children}
       </span>
-    </button>
+    </Magnetic>
   )
 }

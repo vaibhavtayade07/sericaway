@@ -20,7 +20,7 @@ const technologies = [
 
 export default function Technologies() {
   return (
-    <section className="section-padding bg-[#090909]">
+    <section className="section-padding bg-[#090909] overflow-hidden">
       <div className="container-app">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -40,23 +40,34 @@ export default function Technologies() {
             problem — not allegiance to any single vendor.
           </p>
         </motion.div>
+      </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-px bg-[#27272A] rounded-2xl overflow-hidden">
-          {technologies.map((tech, index) => (
-            <motion.div
-              key={tech.name}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.4, delay: index * 0.03 }}
-              className="bg-[#111111] p-6 sm:p-8 hover:bg-[#161616] transition-colors duration-300"
+      <div className="relative">
+        <div className="flex gap-4 marquee-track">
+          {[...technologies, ...technologies].map((tech, i) => (
+            <div
+              key={`${tech.name}-${i}`}
+              className="shrink-0 w-[180px] p-6 rounded-2xl border border-[#27272A] bg-[#111111] hover:bg-[#161616] transition-colors duration-300"
             >
               <p className="text-sm font-medium text-white">{tech.name}</p>
               <p className="text-xs text-[#52525B] mt-1">{tech.category}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#090909] to-transparent pointer-events-none z-10" />
+        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#090909] to-transparent pointer-events-none z-10" />
       </div>
+
+      <style jsx>{`
+        .marquee-track {
+          animation: marquee 40s linear infinite;
+          width: max-content;
+        }
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
     </section>
   )
 }

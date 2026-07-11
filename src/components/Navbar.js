@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import ShinyButton from './ShinyButton'
 
 const navLinks = [
@@ -14,12 +14,26 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const lastScroll = useRef(0)
+  const scrollY = useMotionValue(0)
+  const springY = useSpring(scrollY, { stiffness: 200, damping: 25 })
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
+    const onScroll = () => {
+      const current = window.scrollY
+      setScrolled(current > 40)
+
+      const dir = current > lastScroll.current ? 'down' : 'up'
+      if (dir === 'down' && current > 80) {
+        scrollY.set(-100)
+      } else {
+        scrollY.set(0)
+      }
+      lastScroll.current = current
+    }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [scrollY])
 
   const handleNavClick = (e, href) => {
     if (href.startsWith('#')) {
@@ -31,7 +45,8 @@ export default function Navbar() {
   }
 
   return (
-    <header
+    <motion.header
+      style={{ y: springY }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? 'bg-[#090909]/80 backdrop-blur-xl border-b border-[#27272A]'
@@ -116,6 +131,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   )
 }
