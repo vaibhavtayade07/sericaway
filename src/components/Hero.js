@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import OriginKitGrid from './OriginkitGrid'
+import AmbientOrbs from './AmbientOrbs'
 import ShinyButton from './ShinyButton'
 
 const containerVariants = {
@@ -26,7 +26,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-[#090909]">
       <div className="absolute inset-0 pointer-events-none z-0">
-        <OriginKitGrid />
+        <AmbientOrbs />
       </div>
 
       <div className="absolute top-1/4 -right-48 w-96 h-96 rounded-full bg-accent/5 blur-[120px] pointer-events-none" />

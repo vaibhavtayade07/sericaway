@@ -18,8 +18,8 @@ export default function OriginKitGrid() {
     const GAP = 64
     const R = 280
     const PULL = 1.2
-    const DOT_COLOR = 'rgba(255,255,255,0.15)'
-    const LINE_COLOR = 'rgba(109,94,247,0.08)'
+    const DOT_COLOR = 'rgba(255,255,255,0.35)'
+    const LINE_COLOR = 'rgba(109,94,247,0.15)'
     const TRAIL_COLOR = 'rgba(109,94,247,0.12)'
 
     let W = 1
@@ -120,7 +120,7 @@ export default function OriginKitGrid() {
           : 0
 
         if (right && (i + 1) % nCols !== 0) {
-          ctx.globalAlpha = 0.04 + prox * 0.5
+          ctx.globalAlpha = 0.08 + prox * 0.5
           ctx.strokeStyle = LINE_COLOR
           ctx.lineWidth = 0.5 + prox * 1.2
           ctx.beginPath()
@@ -129,7 +129,7 @@ export default function OriginKitGrid() {
           ctx.stroke()
         }
         if (down && i + nCols < dots.length) {
-          ctx.globalAlpha = 0.04 + prox * 0.5
+          ctx.globalAlpha = 0.08 + prox * 0.5
           ctx.strokeStyle = LINE_COLOR
           ctx.lineWidth = 0.5 + prox * 1.2
           ctx.beginPath()
@@ -143,10 +143,10 @@ export default function OriginKitGrid() {
         const prox = m.active
           ? Math.max(0, 1 - Math.sqrt((m.x - d.x) ** 2 + (m.y - d.y) ** 2) / R)
           : 0
-        ctx.globalAlpha = 0.15 + prox * 0.6
+        ctx.globalAlpha = 0.3 + prox * 0.6
         ctx.fillStyle = DOT_COLOR
         ctx.beginPath()
-        ctx.arc(d.x, d.y, 0.6 + prox * 1.8, 0, 2 * Math.PI)
+        ctx.arc(d.x, d.y, 1.2 + prox * 1.8, 0, 2 * Math.PI)
         ctx.fill()
       }
 
