@@ -1,8 +1,10 @@
 'use client'
 
+import { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import WeightHover from './WeightHover'
 import { ArrowUpRight } from 'lucide-react'
+import AnimatedCounter from './AnimatedCounter'
 
 const caseStudies = [
   {
@@ -15,6 +17,7 @@ const caseStudies = [
     outcome: 'Manual workload reduced by 80%.',
     metric: '80%',
     metricLabel: 'Manual work eliminated',
+    img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop&crop=center',
   },
   {
     client: 'MediConnect Health',
@@ -26,6 +29,7 @@ const caseStudies = [
     outcome: '24/7 AI customer support with under 30-second responses.',
     metric: '30s',
     metricLabel: 'Average response time',
+    img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop&crop=center',
   },
   {
     client: 'Prime Realty Group',
@@ -37,6 +41,7 @@ const caseStudies = [
     outcome: 'Lead response time dropped from 4 hours to under 30 seconds.',
     metric: '30s',
     metricLabel: 'Lead response time',
+    img: 'https://images.unsplash.com/photo-1560518883-b0907edc853e?w=600&h=400&fit=crop&crop=center',
   },
 ]
 
@@ -54,6 +59,24 @@ const cardVariants = {
 }
 
 export default function CaseStudies() {
+  const gridRef = useRef(null)
+
+  useEffect(() => {
+    let st
+    const init = async () => {
+      try {
+        const { StringTune } = await import('@fiddle-digital/string-tune')
+        st = StringTune.getInstance()
+        st.use(StringTune.StringMagnetic)
+        st.start(0)
+      } catch {}
+    }
+    init()
+    return () => {
+      try { st?.stop?.() } catch {}
+    }
+  }, [])
+
   return (
     <section id="case-studies" className="section-padding bg-[#090909]">
       <div className="container-app">
@@ -77,7 +100,8 @@ export default function CaseStudies() {
         </motion.div>
 
         <motion.div
-          className="grid lg:grid-cols-3 gap-px bg-[#27272A] rounded-2xl overflow-hidden"
+          ref={gridRef}
+          className="grid lg:grid-cols-3 gap-6"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -87,9 +111,22 @@ export default function CaseStudies() {
             <motion.div
               key={study.client}
               variants={cardVariants}
-              className="bg-[#111111] p-8 sm:p-10 flex flex-col hover:bg-[#161616] transition-colors duration-500"
+              string="magnetic"
+              string-radius="600"
+              string-strength="0.08"
+              className="group relative bg-[#111111] rounded-2xl border border-[#27272A] p-8 sm:p-10 flex flex-col hover:bg-[#161616] transition-colors duration-500 overflow-hidden"
             >
-              <div className="flex items-start justify-between mb-6">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700">
+                <img
+                  src={study.img}
+                  alt=""
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/60 to-transparent" />
+              </div>
+
+              <div className="relative z-10 flex items-start justify-between mb-6">
                 <div>
                   <p className="text-xs text-[#52525B] uppercase tracking-wider">
                     {study.industry}
@@ -98,10 +135,10 @@ export default function CaseStudies() {
                     {study.client}
                   </h3>
                 </div>
-                <ArrowUpRight className="w-4 h-4 text-[#52525B] mt-1 shrink-0" />
+                <ArrowUpRight className="w-4 h-4 text-[#52525B] mt-1 shrink-0 group-hover:text-accent transition-colors duration-300" />
               </div>
 
-              <div className="space-y-4 flex-1">
+              <div className="space-y-4 flex-1 relative z-10">
                 <div>
                   <p className="text-xs text-[#52525B] uppercase tracking-wider mb-1">
                     Challenge
@@ -120,9 +157,12 @@ export default function CaseStudies() {
                 </div>
               </div>
 
-              <div className="mt-6 pt-6 border-t border-[#27272A]">
+              <div className="mt-6 pt-6 border-t border-[#27272A] relative z-10">
                 <div className="text-2xl font-bold text-accent">
-                  {study.metric}
+                  <AnimatedCounter
+                    value={study.metric.replace(/\D/g, '')}
+                    suffix={study.metric.replace(/\d/g, '')}
+                  />
                 </div>
                 <div className="text-sm text-[#A1A1AA] mt-0.5">
                   {study.metricLabel}

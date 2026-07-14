@@ -13,7 +13,9 @@ const socialLinks = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="section-padding bg-[#090909]">
+    <section id="contact" className="section-padding bg-[#090909] relative overflow-hidden">
+      <div className="section-shape section-shape-2" aria-hidden="true" />
+      <div className="section-shape section-shape-3" aria-hidden="true" />
       <div className="container-app">
         <div className="max-w-4xl mx-auto">
           <motion.div
@@ -23,9 +25,6 @@ export default function Contact() {
             transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
             className="max-w-2xl mb-16 sm:mb-20"
           >
-            <p className="text-xs font-medium text-accent uppercase tracking-[0.2em] mb-4">
-              Contact
-            </p>
             <WeightHover className="heading-lg text-white">
               Let&rsquo;s build something
             </WeightHover>

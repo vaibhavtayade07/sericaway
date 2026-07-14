@@ -4,6 +4,7 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import CursorGlow from '@/components/CursorGlow'
+import ScrollProgress from '@/components/ScrollProgress'
 
 export const metadata = {
   title: {
@@ -54,6 +55,8 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body className="min-h-screen flex flex-col">
         <CursorGlow />
+        <ScrollProgress />
+        <div className="grain-overlay" aria-hidden="true" />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-md"

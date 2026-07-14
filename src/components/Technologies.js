@@ -29,9 +29,6 @@ export default function Technologies() {
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
           className="max-w-2xl mb-16 sm:mb-20"
         >
-          <p className="text-xs font-medium text-accent uppercase tracking-[0.2em] mb-4">
-            Technology
-          </p>
           <WeightHover className="heading-lg text-white">
             Modern AI stack
           </WeightHover>
@@ -42,7 +39,7 @@ export default function Technologies() {
         </motion.div>
       </div>
 
-      <div className="relative">
+      <div className="relative group">
         <div className="flex gap-4 marquee-track">
           {[...technologies, ...technologies].map((tech, i) => (
             <div
@@ -62,6 +59,9 @@ export default function Technologies() {
         .marquee-track {
           animation: marquee 40s linear infinite;
           width: max-content;
+        }
+        .group:hover .marquee-track {
+          animation-play-state: paused;
         }
         @keyframes marquee {
           0% { transform: translateX(0); }

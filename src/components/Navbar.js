@@ -78,7 +78,7 @@ export default function Navbar() {
               handleNavClick(e, '#contact')
             }}
           >
-            Book a Call
+            Book a Discovery Call
           </ShinyButton>
         </div>
 
@@ -125,7 +125,7 @@ export default function Navbar() {
                   handleNavClick(e, '#contact')
                 }}
               >
-                Book a Call
+                Book a Discovery Call
               </ShinyButton>
             </div>
           </motion.div>
