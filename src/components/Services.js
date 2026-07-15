@@ -1,9 +1,5 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useReducedMotion } from 'framer-motion'
 import WeightHover from './WeightHover'
 import {
   Bot,
@@ -15,8 +11,6 @@ import {
   Mail,
   Puzzle,
 } from 'lucide-react'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const cardVisuals = [
   'from-accent/[0.05] via-transparent to-transparent',
@@ -41,36 +35,10 @@ const services = [
 ]
 
 export default function Services() {
-  const wrap = useRef(null)
-  const track = useRef(null)
-  const headingRef = useRef(null)
-  const reduceMotion = useReducedMotion()
-
-  useEffect(() => {
-    if (reduceMotion || !wrap.current || !track.current) return
-    const ctx = gsap.context(() => {
-      const distance = track.current.scrollWidth - window.innerWidth
-
-      gsap.to(track.current, {
-        x: () => -(track.current.scrollWidth - window.innerWidth),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: wrap.current,
-          start: 'top top',
-          end: () => `+=${distance}`,
-          pin: true,
-          scrub: 1.2,
-          invalidateOnRefresh: true,
-        },
-      })
-    }, wrap)
-    return () => ctx.revert()
-  }, [reduceMotion])
-
   return (
-    <section id="services" className="bg-[#090909]">
+    <section id="services" className="bg-[#090909] overflow-hidden">
       <div className="container-app pt-24 sm:pt-32 lg:pt-40">
-        <div ref={headingRef} className="max-w-2xl mb-16 sm:mb-20">
+        <div className="max-w-2xl mb-16 sm:mb-20">
           <p className="text-xs font-medium text-accent uppercase tracking-[0.2em] mb-4">
             Services
           </p>
@@ -84,12 +52,12 @@ export default function Services() {
         </div>
       </div>
 
-      <div ref={wrap} className="relative h-[100dvh] overflow-hidden">
-        <div ref={track} className="flex h-full items-center gap-6 pl-6 pr-6 sm:pl-8 sm:pr-8 lg:pl-12 lg:pr-12">
-          {services.map((service, i) => (
+      <div className="relative group pb-24 sm:pb-32 lg:pb-40">
+        <div className="flex gap-6 marquee-track">
+          {[...services, ...services].map((service, i) => (
             <div
-              key={service.title}
-              className="group shrink-0 w-[340px] h-[420px] rounded-2xl border border-[#27272A] bg-[#111111] p-8 flex flex-col hover:bg-[#161616] transition-colors duration-500 relative overflow-hidden"
+              key={`${service.title}-${i}`}
+              className="shrink-0 w-[340px] rounded-2xl border border-[#27272A] bg-[#111111] p-8 flex flex-col hover:bg-[#161616] transition-colors duration-500 relative overflow-hidden"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${cardVisuals[i % cardVisuals.length]} pointer-events-none`} />
 
@@ -102,7 +70,7 @@ export default function Services() {
                   <service.icon className="w-5 h-5 text-accent" />
                 </div>
                 <span className="text-[10px] text-[#52525B] font-mono font-medium">
-                  {String(i + 1).padStart(2, '0')}
+                  {String(i % 8 + 1).padStart(2, '0')}
                 </span>
               </div>
 
@@ -119,7 +87,23 @@ export default function Services() {
             </div>
           ))}
         </div>
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#090909] to-transparent pointer-events-none z-10" />
+        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#090909] to-transparent pointer-events-none z-10" />
       </div>
+
+      <style jsx>{`
+        .marquee-track {
+          animation: marquee 50s linear infinite;
+          width: max-content;
+        }
+        .group:hover .marquee-track {
+          animation-play-state: paused;
+        }
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
     </section>
   )
 }

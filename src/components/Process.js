@@ -93,6 +93,15 @@ export default function Process() {
           }
         )
       }
+
+      sectionRef.current.querySelectorAll('.process-card').forEach((card) => {
+        ScrollTrigger.create({
+          trigger: card,
+          start: 'top 85%',
+          onEnter: () => card.classList.add('-inview'),
+          once: true,
+        })
+      })
     }, sectionRef)
     return () => {
       ctx.revert()
