@@ -41,7 +41,7 @@ const caseStudies = [
     outcome: 'Lead response time dropped from 4 hours to under 30 seconds.',
     metric: '30s',
     metricLabel: 'Lead response time',
-    img: 'https://images.unsplash.com/photo-1560518883-b0907edc853e?w=600&h=400&fit=crop&crop=center',
+    img: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&h=400&fit=crop&crop=center',
   },
 ]
 
