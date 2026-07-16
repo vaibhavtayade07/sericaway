@@ -14,6 +14,11 @@ build/
 .env
 .env*.local
 
+# database
+data/*.db
+data/*.db-wal
+data/*.db-shm
+
 # misc
 *.pem
 .DS_Store
@@ -24,3 +29,4 @@ yarn-error.log*
 
 # typescript
 next-env.d.ts
+/src/generated/prisma
