@@ -169,12 +169,12 @@ export default function Process() {
       gsap.fromTo(headingRef.current,
         { opacity: 0, y: 30 },
         {
-          opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+          opacity: 1, y: 0, duration: 0.5, ease: 'power3.out',
           scrollTrigger: {
             trigger: headingRef.current,
             start: 'top 85%',
             end: 'top 40%',
-            scrub: 1.2,
+            scrub: 0.5,
           },
         }
       )
@@ -197,12 +197,12 @@ export default function Process() {
           start: 'top 75%',
           onEnter: () => {
             const tl = gsap.timeline()
-            tl.to(card, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' })
-              .to(number, { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.45')
-              .to(icon, { scale: 1, rotation: 0, duration: 0.5, ease: 'back.out(2.5)' }, '-=0.35')
-              .to(title, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' }, '-=0.25')
-              .to(desc, { y: 0, opacity: 1, duration: 0.4, ease: 'power3.out' }, '-=0.15')
-              .to(detail, { y: 0, opacity: 1, duration: 0.4, ease: 'power3.out' }, '-=0.1')
+            tl.to(card, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' })
+              .to(number, { x: 0, opacity: 1, duration: 0.35, ease: 'power3.out' }, '-=0.25')
+              .to(icon, { scale: 1, rotation: 0, duration: 0.3, ease: 'back.out(2.5)' }, '-=0.2')
+              .to(title, { y: 0, opacity: 1, duration: 0.3, ease: 'power3.out' }, '-=0.15')
+              .to(desc, { y: 0, opacity: 1, duration: 0.25, ease: 'power3.out' }, '-=0.1')
+              .to(detail, { y: 0, opacity: 1, duration: 0.25, ease: 'power3.out' }, '-=0.05')
           },
           once: true,
         })

@@ -3,6 +3,29 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 0 0% 3.5%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 6.7%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 6.7%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 37 48% 57%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 9%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 37 48% 57%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 15.9%;
+    --input: 0 0% 15.9%;
+    --ring: 37 48% 57%;
+    --radius: 0.5rem;
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -16,7 +39,7 @@
   }
 
   ::selection {
-    background-color: rgba(109, 94, 247, 0.3);
+    background-color: rgba(200, 155, 94, 0.3);
     color: #ffffff;
   }
 
@@ -70,11 +93,11 @@
   }
 
   .glow {
-    box-shadow: 0 0 60px rgba(109, 94, 247, 0.15);
+    box-shadow: 0 0 60px rgba(200, 155, 94, 0.15);
   }
 
   .glow-sm {
-    box-shadow: 0 0 30px rgba(109, 94, 247, 0.1);
+    box-shadow: 0 0 30px rgba(200, 155, 94, 0.1);
   }
 
   /* Full-screen SVG grain / noise texture
@@ -133,7 +156,7 @@
   .section-shape-1 {
     width: 500px;
     height: 500px;
-    background: rgba(109, 94, 247, 0.06);
+    background: rgba(200, 155, 94, 0.06);
     top: -250px;
     right: -100px;
   }
@@ -141,7 +164,7 @@
   .section-shape-2 {
     width: 400px;
     height: 400px;
-    background: rgba(109, 94, 247, 0.04);
+    background: rgba(200, 155, 94, 0.04);
     bottom: -200px;
     left: -150px;
   }

@@ -7,6 +7,7 @@ import AmbientOrbs from './AmbientOrbs'
 import ShinyButton from './ShinyButton'
 import Magnetic from './Magnetic'
 import OriginkitGrid from './OriginkitGrid'
+import { FloatingPaths } from './ui/background-paths'
 
 const scrollTo = (id) => {
   const el = document.querySelector(id)
@@ -30,26 +31,26 @@ export default function Hero() {
       tl.fromTo(
           headlineRef.current.querySelectorAll('.hero-word'),
           { opacity: 0, y: 40, rotateX: -90 },
-          { opacity: 1, y: 0, rotateX: 0, duration: 0.8, stagger: 0.06, ease: 'power2.out' }
+          { opacity: 1, y: 0, rotateX: 0, duration: 0.5, stagger: 0.04, ease: 'power2.out' }
         )
-        .fromTo(subtextRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
+        .fromTo(subtextRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35 }, '-=0.25')
         .fromTo(
           ctaRef.current.children,
           { opacity: 0, y: 15, scale: 0.95 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.1 },
-          '-=0.3'
+          { opacity: 1, y: 0, scale: 1, duration: 0.3, stagger: 0.06 },
+          '-=0.2'
         )
         .fromTo(
           visualRef.current,
           { opacity: 0, x: 80, scale: 0.92 },
-          { opacity: 1, x: 0, scale: 1, duration: 1.1 },
-          '-=0.8'
+          { opacity: 1, x: 0, scale: 1, duration: 0.6 },
+          '-=0.5'
         )
         .fromTo(
           [cardA.current, cardB.current],
           { opacity: 0, y: 20, scale: 0.9 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.12 },
-          '-=0.5'
+          { opacity: 1, y: 0, scale: 1, duration: 0.35, stagger: 0.07 },
+          '-=0.3'
         )
     }, wrapper)
     return () => ctx.revert()
@@ -60,10 +61,14 @@ export default function Hero() {
       <div className="absolute inset-0 z-0 opacity-30">
         <OriginkitGrid />
       </div>
-      <div className="absolute inset-0 pointer-events-none z-[1]">
+      <div className="absolute inset-0 z-[1] opacity-40">
+        <FloatingPaths position={1} />
+        <FloatingPaths position={-1} />
+      </div>
+      <div className="absolute inset-0 pointer-events-none z-[2]">
         <AmbientOrbs />
       </div>
-      <div className="absolute inset-0 z-[1] grid-pattern opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 z-[2] grid-pattern opacity-30 pointer-events-none" />
 
       <div className="container-app relative z-10 w-full pt-32 sm:pt-40 pb-24">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">

@@ -19,8 +19,8 @@ export default function OriginKitGrid() {
     const R = 280
     const PULL = 1.2
     const DOT_COLOR = 'rgba(255,255,255,0.35)'
-    const LINE_COLOR = 'rgba(109,94,247,0.15)'
-    const TRAIL_COLOR = 'rgba(109,94,247,0.12)'
+    const LINE_COLOR = 'rgba(200,155,94,0.15)'
+    const TRAIL_COLOR = 'rgba(200,155,94,0.12)'
 
     let W = 1
     let H = 1

@@ -93,7 +93,7 @@ export default function Services() {
 
       <style jsx>{`
         .marquee-track {
-          animation: marquee 50s linear infinite;
+          animation: marquee 25s linear infinite;
           width: max-content;
         }
         .group:hover .marquee-track {

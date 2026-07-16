@@ -26,7 +26,7 @@ export default function Technologies() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
           className="max-w-2xl mb-16 sm:mb-20"
         >
           <WeightHover className="heading-lg text-white">
@@ -57,7 +57,7 @@ export default function Technologies() {
 
       <style jsx>{`
         .marquee-track {
-          animation: marquee 40s linear infinite;
+          animation: marquee 20s linear infinite;
           width: max-content;
         }
         .group:hover .marquee-track {

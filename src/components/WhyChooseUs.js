@@ -82,7 +82,7 @@ export default function WhyChooseUs() {
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
+          duration: 0.4,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: headingRef.current,
@@ -100,8 +100,8 @@ export default function WhyChooseUs() {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.7,
-          stagger: 0.08,
+          duration: 0.35,
+          stagger: 0.05,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: gridRef.current,

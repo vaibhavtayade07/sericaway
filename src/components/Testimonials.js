@@ -43,12 +43,12 @@ export default function Testimonials() {
         headingRef.current,
         { opacity: 0, y: 30 },
         {
-          opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+          opacity: 1, y: 0, duration: 0.4, ease: 'power3.out',
           scrollTrigger: {
             trigger: headingRef.current,
             start: 'top 85%',
             end: 'top 40%',
-            scrub: 1.2,
+            scrub: 0.5,
           },
         }
       )
@@ -59,12 +59,12 @@ export default function Testimonials() {
           card,
           { opacity: 0, y: 30 },
           {
-            opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+            opacity: 1, y: 0, duration: 0.4, ease: 'power3.out',
             scrollTrigger: {
               trigger: card,
               start: 'top 85%',
               end: 'top 40%',
-              scrub: 1.2,
+              scrub: 0.5,
             },
           }
         )

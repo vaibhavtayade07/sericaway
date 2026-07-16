@@ -39,12 +39,12 @@ export default function About() {
         contentRef.current,
         { opacity: 0, y: 40 },
         {
-          opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+          opacity: 1, y: 0, duration: 0.4, ease: 'power3.out',
           scrollTrigger: {
             trigger: contentRef.current,
             start: 'top 85%',
             end: 'top 40%',
-            scrub: 1.2,
+            scrub: 0.5,
           },
         }
       )
@@ -53,7 +53,7 @@ export default function About() {
         gridRef.current.querySelectorAll('.about-card'),
         { opacity: 0, y: 30 },
         {
-          opacity: 1, y: 0, duration: 0.7, stagger: 0.15, ease: 'power3.out',
+          opacity: 1, y: 0, duration: 0.4, stagger: 0.08, ease: 'power3.out',
           scrollTrigger: {
             trigger: gridRef.current,
             start: 'top 80%',

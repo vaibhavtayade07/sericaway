@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 const orbs = [
   {
     size: 600,
-    color: 'radial-gradient(circle at 30% 30%, rgba(109,94,247,0.15), transparent 70%)',
+    color: 'radial-gradient(circle at 30% 30%, rgba(200,155,94,0.15), transparent 70%)',
     xRange: [-80, 120],
     yRange: [-60, 100],
     duration: 12,
