@@ -65,7 +65,7 @@ const decoratives = {
     </div>
   ),
   wave: ({ hue }) => (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-end gap-[3px] p-8 opacity-[0.06]">
+    <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-end gap-[3px] p-6 opacity-[0.06]">
       {Array.from({ length: 30 }).map((_, i) => (
         <div
           key={i}
@@ -253,8 +253,8 @@ export default function Process() {
         }
       `}</style>
 
-      <div className="container-app pt-24 sm:pt-32 lg:pt-40">
-        <div ref={headingRef} className="max-w-2xl mb-20 sm:mb-28">
+      <div className="container-app pt-20 sm:pt-24 lg:pt-32">
+        <div ref={headingRef} className="max-w-2xl mb-14 sm:mb-20">
           <WeightHover className="heading-lg text-white">How we work</WeightHover>
           <p className="mt-4 text-[#A1A1AA] text-base leading-relaxed max-w-xl">
             A structured but flexible approach that keeps projects moving without sacrificing quality.
@@ -262,8 +262,8 @@ export default function Process() {
         </div>
       </div>
 
-      <div className="container-app pb-32 sm:pb-40 lg:pb-48">
-        <div className="space-y-20 sm:space-y-28">
+      <div className="container-app pb-24 sm:pb-32 lg:pb-40">
+        <div className="space-y-12 sm:space-y-16">
           {steps.map((step, i) => {
             const DecorativeVisual = decoratives[['scan', 'wave', 'grid', 'particles', 'orbit'][i]]
             const accentColor = `hsl(${step.hue}, 55%, 50%)`
@@ -292,7 +292,7 @@ export default function Process() {
               >
                 {/* Ambient orb */}
                 <div
-                  className="absolute -top-32 -right-32 w-72 h-72 rounded-full pointer-events-none"
+                  className="absolute -top-24 -right-24 w-56 h-56 rounded-full pointer-events-none"
                   style={{
                     background: orbGradient,
                     filter: 'blur(60px)',
@@ -303,29 +303,29 @@ export default function Process() {
                 {DecorativeVisual && <DecorativeVisual hue={step.hue} />}
 
                 {/* Content */}
-                <div className="relative z-10 p-8 sm:p-12 lg:p-16">
-                  <Magnetic className="card-number inline-block text-7xl sm:text-8xl lg:text-9xl font-bold leading-none mb-6 select-none"
+                <div className="relative z-10 p-6 sm:p-8 lg:p-10">
+                  <Magnetic className="card-number inline-block text-5xl sm:text-6xl lg:text-7xl font-bold leading-none mb-4 select-none"
                     style={{ color: `hsla(${step.hue}, 55%, 50%, 0.1)` }}
                   >
                     {step.number}
                   </Magnetic>
 
                   <div
-                    className="card-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
+                    className="card-icon w-10 h-10 rounded-xl flex items-center justify-center mb-3"
                     style={{ backgroundColor: accentBg, border: `1px solid ${accentBorder}` }}
                   >
-                    <step.icon className="w-7 h-7" style={{ color: accentColor }} />
+                    <step.icon className="w-5 h-5" style={{ color: accentColor }} />
                   </div>
 
-                  <h3 className="card-title text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
+                  <h3 className="card-title text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2">
                     {step.title}
                   </h3>
 
-                  <p className="card-desc text-[#A1A1AA] text-base sm:text-lg leading-relaxed max-w-2xl">
+                  <p className="card-desc text-[#A1A1AA] text-sm sm:text-base leading-relaxed max-w-2xl">
                     {step.description}
                   </p>
 
-                  <p className="card-detail text-sm text-[#71717A] leading-relaxed max-w-xl mt-4">
+                  <p className="card-detail text-sm text-[#71717A] leading-relaxed max-w-xl mt-2">
                     {step.detail}
                   </p>
                 </div>
