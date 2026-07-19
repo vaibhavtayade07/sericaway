@@ -23,4 +23,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy .opennext/cloudflare --project-name sericaway --branch production
+          command: pages deploy .open-next/cloudflare --project-name sericaway --branch production
