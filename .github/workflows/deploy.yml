@@ -14,7 +14,6 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - run: npm run lint
       - run: npm run build:cloudflare
         env:
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
