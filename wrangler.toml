@@ -1,0 +1,10 @@
+name = "sericaway"
+pages_build_output_dir = ".opennext/cloudflare"
+
+compatibility_date = "2026-07-17"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "sericaway-db"
+database_id = "e6293d1c-ebc6-4551-91fe-4d4b75425038"

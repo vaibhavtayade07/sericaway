@@ -1,27 +1,25 @@
+import { cookies } from 'next/headers'
+import crypto from 'crypto'
+import { redirect } from 'next/navigation'
 import { getAllContacts } from '@/lib/db'
 
 export const metadata = {
   title: 'Contact Submissions | Admin',
 }
 
-export default function AdminContactsPage({ searchParams }) {
-  const pass = searchParams?.pw
-  const ADMIN_PW = process.env.ADMIN_PASSWORD || 'sericaway'
+function verifySession(token) {
+  const adminPw = process.env.ADMIN_PASSWORD || 'sericaway'
+  const secret = process.env.SESSION_SECRET || adminPw
+  const expected = crypto.createHmac('sha256', secret).update(adminPw).digest('hex')
+  return token === expected
+}
 
-  if (pass !== ADMIN_PW) {
-    return (
-      <div className="min-h-screen bg-[#090909] flex items-center justify-center px-4">
-        <div className="bg-[#111111] border border-[#27272A] rounded-2xl p-8 max-w-md w-full text-center">
-          <h1 className="text-lg font-semibold text-white mb-4">Admin Access</h1>
-          <p className="text-sm text-[#A1A1AA] mb-6">
-            Add <code className="text-accent">?pw=yourpassword</code> to the URL to view submissions.
-          </p>
-          <p className="text-xs text-[#52525B]">
-            Set <code className="text-accent">ADMIN_PASSWORD</code> in your .env file.
-          </p>
-        </div>
-      </div>
-    )
+export default async function AdminContactsPage() {
+  const cookieStore = await cookies()
+  const session = cookieStore.get('admin_session')
+
+  if (!session || !verifySession(session.value)) {
+    redirect('/admin')
   }
 
   const contacts = getAllContacts()
@@ -31,7 +29,17 @@ export default function AdminContactsPage({ searchParams }) {
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-xl font-semibold text-white">Contact Submissions</h1>
-          <span className="text-sm text-[#52525B]">{contacts.length} total</span>
+          <div className="flex items-center gap-4">
+            <span className="text-sm text-[#52525B]">{contacts.length} total</span>
+            <form action="/api/admin/logout" method="POST">
+              <button
+                type="submit"
+                className="text-xs text-[#52525B] hover:text-white transition-colors underline"
+              >
+                Sign out
+              </button>
+            </form>
+          </div>
         </div>
 
         {contacts.length === 0 ? (
