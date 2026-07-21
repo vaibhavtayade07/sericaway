@@ -8,7 +8,7 @@ export async function POST(request) {
       return Response.json({ error: 'Name, email, and message are required.' }, { status: 400 })
     }
 
-    saveContact({ name, email, company: company || '', message })
+    await saveContact({ name, email, company: company || '', message })
 
     return Response.json({ success: true })
   } catch (err) {

@@ -167,7 +167,7 @@ export default function WhyChooseUs() {
                       <div
                         key={j}
                         className="h-px bg-white"
-                        style={{ width: `${50 + Math.random() * 50}%` }}
+                        style={{ width: `${50 + ((j * 37 + 13) % 51)}%` }}
                       />
                     ))}
                   </div>

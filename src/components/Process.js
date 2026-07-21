@@ -115,10 +115,10 @@ const decoratives = {
           key={i}
           className="absolute rounded-full"
           style={{
-            left: `${15 + Math.random() * 70}%`,
+            left: `${15 + ((i * 29 + 7) % 71)}%`,
             bottom: '-10px',
-            width: `${3 + Math.random() * 5}px`,
-            height: `${3 + Math.random() * 5}px`,
+            width: `${3 + ((i * 13 + 5) % 5)}px`,
+            height: `${3 + ((i * 17 + 11) % 5)}px`,
             backgroundColor: `hsl(${hue}, 70%, 60%)`,
             animation: `rise 3s ${i * 0.25}s ease-out infinite`,
           }}

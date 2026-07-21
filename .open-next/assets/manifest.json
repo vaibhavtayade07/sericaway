@@ -1,0 +1,16 @@
+{
+  "name": "Sericaway",
+  "short_name": "Sericaway",
+  "description": "A modern agency building digital experiences",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4f46e5",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
